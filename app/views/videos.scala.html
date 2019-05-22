@@ -1,0 +1,18 @@
+@import scala.collection.mutable
+
+@(map: mutable.Map[String, Workflow])(implicit request: Request[_])
+
+@main("Videos") {
+  <h1>Uploaded videos</h1>
+
+  @for(vid <- map.values) {
+
+    @{
+      vid match {
+        case Workflow(_, _, _, message: CompleteMessage, _, _) => components.complete(message)
+        case Workflow(_, _, _, message: IngestMessage, _, _) => components.ingest(message)
+        case Workflow(_, _, _, message: PlainMessage, _, _) => ""
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@()(implicit request: Request[_])
+
+@main("Welcome to Play") {
+  <h1>Select a file to upload</h1>
+
+  @helper.form(action = routes.HomeController.upload(), 'enctype -> "multipart/form-data") {
+
+    @helper.CSRF.formField
+
+    <input type="file" name="uploadFile" />
+
+    <p>
+      <input type="submit" value="upload" />
+    </p>
+
+  }
+
+  <script>
+    function submitForm() {
+
+      var formData = new FormData()
+      var fileField = document.querySelector("input[type=file]")
+
+      formData.append("uploadFile", fileField.files[0])
+
+      fetch("@routes.HomeController.upload().url",
+              {
+                method: "POST",
+                body: formData
+              }
+      ).then(function(r) {
+        setInterval(function() {
+          fetch("/poll/" + r.body).then(r => window.location = "@routes.HomeController.videos()")
+        }, 500)
+      })
+
+      return false;
+    }
+  </script>
+}

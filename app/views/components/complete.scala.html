@@ -1,0 +1,12 @@
+@(message: CompleteMessage)
+
+<div>
+    <h2>@message.srcVideo</h2>
+    <p><span>mp4: </span>
+        @message.mp4Urls.map { url =>
+            <br /><a href="@url">@url</a>
+        }
+    </p>
+    <p><span>hls: </span><a href="@message.hlsUrl">@message.hlsUrl</a></p>
+    <p><span>dash: </span><a href="@message.dashUrl">@message.dashUrl</a></p>
+</div>

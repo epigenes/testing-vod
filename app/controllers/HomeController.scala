@@ -19,8 +19,8 @@ import scala.collection.mutable
  */
 class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
-  val AWS_ACCESS_KEY = "AKIA2BGEHHRP42HST3IB"
-  val AWS_SECRET_KEY = "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"
+  val AWS_ACCESS_KEY = ???
+  val AWS_SECRET_KEY = ???
 
   val region = "eu-west-2"
 
